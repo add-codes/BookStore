@@ -1,10 +1,18 @@
 package com.green.java.Admin.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +50,12 @@ public class Staff {
 
 	@Column(name = "STATUS")
 	private Boolean status;
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "STAFF_ROLE",
+				joinColumns = @JoinColumn(name = "STAFF_ID"),
+				inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	private Set<Role> role = new HashSet<>();
 
 	public Staff() {
 		super();
@@ -83,6 +97,14 @@ public class Staff {
 
 	public void setStaffID(Integer staffID) {
 		this.staffID = staffID;
+	}
+
+	public Set<Role> getRole() {
+		return role;
+	}
+
+	public void setRole(Set<Role> role) {
+		this.role = role;
 	}
 
 	public String getStaffUsername() {

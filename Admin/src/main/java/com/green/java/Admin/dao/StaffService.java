@@ -18,5 +18,9 @@ public class StaffService {
 	public List<Staff> getAllStaff() {
 		return (List<Staff>) staffRepository.findAll();
 	}
+	
+	public Staff getStaffByUsername(String username) {
+		return staffRepository.getStaffByUsername(username);
+	}
 
 }
