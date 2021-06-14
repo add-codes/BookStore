@@ -14,6 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.green.java.Admin.handler.OnAuthenticationFailureHandler;
+import com.green.java.Admin.handler.OnAuthenticationSuccessHandler;
 import com.green.java.Admin.service.StaffDetailsService;
 
 @Configuration()
@@ -47,11 +49,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/css/**", "/img/**", "/contactform/**", "/lib/**")
-			.permitAll()
+			.permitAll().anyRequest().authenticated()
 			.and().formLogin().loginPage("/login").permitAll() // Admin or Staff must login to access their role page
 			.usernameParameter("txtUsername")
 			.passwordParameter("txtPassword")
 			.loginProcessingUrl("/dologin")
+			.failureHandler(new OnAuthenticationFailureHandler())
+			.successHandler(new OnAuthenticationSuccessHandler())
 			.and().exceptionHandling().accessDeniedPage("/403"); 
 	}
 	

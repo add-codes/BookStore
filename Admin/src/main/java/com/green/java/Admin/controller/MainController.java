@@ -27,16 +27,16 @@ public class MainController {
 		return "login";
 	}
 	
-	@PostMapping("/login")
-	public String staffLogin(@ModelAttribute("ADMIN") Staff formStaff) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Staff staff = staffService.getStaffByUsername(formStaff.getStaffUsername());
-		if (staff != null && encoder.matches(formStaff.getStaffPassword(), staff.getStaffPassword())) {
-			return "redirect:/";
-		} else {
-			return "redirect:/login";
-		}
-	}
+//	@PostMapping("/dologin")
+//	public String staffLogin(@ModelAttribute("ADMIN") Staff formStaff) {
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		Staff staff = staffService.getStaffByUsername(formStaff.getStaffUsername());
+//		if (staff != null && encoder.matches(formStaff.getStaffPassword(), staff.getStaffPassword())) {
+//			return "redirect:/";
+//		} else {
+//			return "redirect:/login";
+//		}
+//	}
 	
 //	@GetMapping("/500")
 //	public String showServerErrorPage() {
