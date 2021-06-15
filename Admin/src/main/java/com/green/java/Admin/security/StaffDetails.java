@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.green.java.Admin.entity.Staff;
+import com.green.java.Admin.entity.staff.Staff;
 
 public class StaffDetails implements UserDetails {
 

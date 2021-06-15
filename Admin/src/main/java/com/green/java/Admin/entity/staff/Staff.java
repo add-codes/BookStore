@@ -1,4 +1,4 @@
-package com.green.java.Admin.entity;
+package com.green.java.Admin.entity.staff;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.green.java.Admin.entity.home.Address;
 
 @Entity
 @Table(name = "STAFF")
@@ -49,13 +51,19 @@ public class Staff {
 	private String staffPhone;
 
 	@Column(name = "STATUS")
-	private Boolean status;
+	private Boolean staffStatus;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "STAFF_ROLE",
-				joinColumns = @JoinColumn(name = "STAFF_ID"),
+	@JoinTable(name = "STAFF_ROLE", 
+				joinColumns = @JoinColumn(name = "STAFF_ID"), 
 				inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<Role> role = new HashSet<>();
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "ADDRESS_STAFF_CUSTOMER", 
+				joinColumns = @JoinColumn(name = "STAFF_ID"), 
+				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+	private Set<Address> addressCustomer = new HashSet<>();
 
 	public Staff() {
 		super();
@@ -63,7 +71,7 @@ public class Staff {
 
 	public Staff(Integer staffID, String staffUsername, String staffPassword, String staffFirstName,
 			String staffLastName, String staffEmail, Integer staffAge, String staffGender, String staffPhone,
-			Boolean status) {
+			Boolean staffStatus) {
 		super();
 		this.staffID = staffID;
 		this.staffUsername = staffUsername;
@@ -74,11 +82,11 @@ public class Staff {
 		this.staffAge = staffAge;
 		this.staffGender = staffGender;
 		this.staffPhone = staffPhone;
-		this.status = status;
+		this.staffStatus = staffStatus;
 	}
 
 	public Staff(Integer staffID, String staffUsername, String staffFirstName, String staffLastName, String staffEmail,
-			Integer staffAge, String staffGender, String staffPhone, Boolean status) {
+			Integer staffAge, String staffGender, String staffPhone, Boolean staffStatus) {
 		super();
 		this.staffID = staffID;
 		this.staffUsername = staffUsername;
@@ -88,7 +96,7 @@ public class Staff {
 		this.staffAge = staffAge;
 		this.staffGender = staffGender;
 		this.staffPhone = staffPhone;
-		this.status = status;
+		this.staffStatus = staffStatus;
 	}
 
 	public Integer getStaffID() {
@@ -105,6 +113,14 @@ public class Staff {
 
 	public void setRole(Set<Role> role) {
 		this.role = role;
+	}
+
+	public Set<Address> getAddressCustomer() {
+		return addressCustomer;
+	}
+
+	public void setAddressCustomer(Set<Address> addressCustomer) {
+		this.addressCustomer = addressCustomer;
 	}
 
 	public String getStaffUsername() {
@@ -171,12 +187,12 @@ public class Staff {
 		this.staffPhone = staffPhone;
 	}
 
-	public Boolean getStatus() {
-		return status;
+	public Boolean getStaffStatus() {
+		return staffStatus;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setStaffStatus(Boolean staffStatus) {
+		this.staffStatus = staffStatus;
 	}
 
 }

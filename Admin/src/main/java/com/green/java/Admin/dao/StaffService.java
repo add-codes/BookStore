@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.green.java.Admin.entity.Staff;
+import com.green.java.Admin.entity.staff.Staff;
 
 @Service
 @Transactional

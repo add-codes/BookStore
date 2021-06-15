@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.java.Admin.dao.StaffService;
-import com.green.java.Admin.entity.Staff;
+import com.green.java.Admin.entity.staff.Staff;
 
 @Controller
 public class MainController {

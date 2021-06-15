@@ -1,4 +1,4 @@
-package com.green.java.Admin.entity;
+package com.green.java.Admin.entity.staff;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,7 +34,7 @@ public class Role {
 	@JoinTable(name = "STAFF_ROLE",
 				joinColumns = @JoinColumn(name = "ROLE_ID"),
 				inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
-	private Set<Staff> staff = new HashSet<>();
+	private Set<Staff> staffRole = new HashSet<>();
 	
 	public Role() {
 		super();
@@ -45,6 +45,14 @@ public class Role {
 		this.roleID = roleID;
 		this.roleName = roleName;
 		this.description = description;
+	}
+	
+	public Set<Staff> getStaffRole() {
+		return staffRole;
+	}
+
+	public void setStaffRole(Set<Staff> staffRole) {
+		this.staffRole = staffRole;
 	}
 
 	public Integer getRoleID() {

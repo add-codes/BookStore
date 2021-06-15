@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.green.java.Admin.dao.StaffRepository;
-import com.green.java.Admin.entity.Staff;
+import com.green.java.Admin.entity.staff.Staff;
 import com.green.java.Admin.helper.Announcement;
 import com.green.java.Admin.security.StaffDetails;
 
