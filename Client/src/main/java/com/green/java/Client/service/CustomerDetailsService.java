@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.green.java.Client.dao.CustomerRepository;
-import com.green.java.Client.entity.Customer;
+import com.green.java.Client.entity.customer.Customer;
 import com.green.java.Client.helper.Announcement;
 import com.green.java.Client.security.CustomerDetails;
 

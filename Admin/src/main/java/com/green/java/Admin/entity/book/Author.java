@@ -29,12 +29,9 @@ public class Author {
 	@Column(name = "AUTHOR_NAME")
 	private String authorName;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "BOOK_DETAIL",
-				joinColumns = @JoinColumn(name = "AUTHOR_ID"),
-				inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
-	private Set<Book> authorBook = new HashSet<>();
-
+	@ManyToMany(mappedBy = "bookAuthor")
+	private Set<Book> authorBook = new HashSet<Book>();
+	
 	public Author() {
 		super();
 	}

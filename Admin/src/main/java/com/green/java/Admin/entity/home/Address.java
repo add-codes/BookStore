@@ -3,15 +3,11 @@ package com.green.java.Admin.entity.home;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -45,17 +41,11 @@ public class Address {
 	@Column(name = "NUMBER")
 	private String houseNumner;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "ADDRESS_STAFF_CUSTOMER",
-				joinColumns = @JoinColumn(name = "STAFF_ID"),
-				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
-	private Set<Staff> staffAddress = new HashSet<>();
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "ADDRESS_STAFF_CUSTOMER",
-				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
-				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
-	private Set<Customer> customerAddress = new HashSet<>();
+	@ManyToMany(mappedBy = "staffAddress")
+	private Set<Staff> addressStaff = new HashSet<Staff>();
+	
+	@ManyToMany(mappedBy = "customerAddress")
+	private Set<Customer> addressCustomer = new HashSet<Customer>();
 
 	public Address() {
 		super();
@@ -73,20 +63,12 @@ public class Address {
 		this.houseNumner = houseNumner;
 	}
 
-	public Set<Staff> getStaffAddress() {
-		return staffAddress;
+	public Set<Staff> getAddressStaff() {
+		return addressStaff;
 	}
 
-	public void setStaffAddress(Set<Staff> staffAddress) {
-		this.staffAddress = staffAddress;
-	}
-
-	public Set<Customer> getCustomerAddress() {
-		return customerAddress;
-	}
-
-	public void setCustomerAddress(Set<Customer> customerAddress) {
-		this.customerAddress = customerAddress;
+	public void setAddressStaff(Set<Staff> addressStaff) {
+		this.addressStaff = addressStaff;
 	}
 
 	public Integer getAddressID() {

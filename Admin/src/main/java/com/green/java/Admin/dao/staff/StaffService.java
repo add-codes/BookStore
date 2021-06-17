@@ -1,4 +1,4 @@
-package com.green.java.Admin.dao;
+package com.green.java.Admin.dao.staff;
 
 import java.util.List;
 

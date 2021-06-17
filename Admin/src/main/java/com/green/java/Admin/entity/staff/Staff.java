@@ -57,13 +57,13 @@ public class Staff {
 	@JoinTable(name = "STAFF_ROLE", 
 				joinColumns = @JoinColumn(name = "STAFF_ID"), 
 				inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-	private Set<Role> role = new HashSet<>();
+	private Set<Role> staffRole = new HashSet<>();
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "ADDRESS_STAFF_CUSTOMER", 
+	@JoinTable(name = "ADDRESS_STAFF", 
 				joinColumns = @JoinColumn(name = "STAFF_ID"), 
 				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
-	private Set<Address> addressCustomer = new HashSet<>();
+	private Set<Address> staffAddress = new HashSet<>();
 
 	public Staff() {
 		super();
@@ -99,28 +99,28 @@ public class Staff {
 		this.staffStatus = staffStatus;
 	}
 
+	public Set<Role> getStaffRole() {
+		return staffRole;
+	}
+
+	public void setStaffRole(Set<Role> staffRole) {
+		this.staffRole = staffRole;
+	}
+
+	public Set<Address> getStaffAddress() {
+		return staffAddress;
+	}
+
+	public void setStaffAddress(Set<Address> staffAddress) {
+		this.staffAddress = staffAddress;
+	}
+
 	public Integer getStaffID() {
 		return staffID;
 	}
 
 	public void setStaffID(Integer staffID) {
 		this.staffID = staffID;
-	}
-
-	public Set<Role> getRole() {
-		return role;
-	}
-
-	public void setRole(Set<Role> role) {
-		this.role = role;
-	}
-
-	public Set<Address> getAddressCustomer() {
-		return addressCustomer;
-	}
-
-	public void setAddressCustomer(Set<Address> addressCustomer) {
-		this.addressCustomer = addressCustomer;
 	}
 
 	public String getStaffUsername() {

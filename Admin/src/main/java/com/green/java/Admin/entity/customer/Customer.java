@@ -58,16 +58,16 @@ public class Customer {
 	private Boolean customerStatus;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "ADDRESS_STAFF_CUSTOMER",
+	@JoinTable(name = "ADDRESS_CUSTOMER",
 				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
 				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
-	private Set<Address> addressCustomer = new HashSet<>();
+	private Set<Address> customerAddress = new HashSet<>();
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "CUSTOMER_DISCOUNT",
 				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
 				inverseJoinColumns = @JoinColumn(name = "DISCOUNT_ID"))
-	private Set<Discount> discountCustomer = new HashSet<>();
+	private Set<Discount> customerDiscount = new HashSet<>();
 	
 
 	public Customer() {
@@ -105,22 +105,6 @@ public class Customer {
 		this.customerRank = customerRank;
 		this.customerCreatedDate = customerCreatedDate;
 		this.customerStatus = customerStatus;
-	}
-
-	public Set<Address> getAddressCustomer() {
-		return addressCustomer;
-	}
-
-	public void setAddressCustomer(Set<Address> addressCustomer) {
-		this.addressCustomer = addressCustomer;
-	}
-
-	public Set<Discount> getDiscountCustomer() {
-		return discountCustomer;
-	}
-
-	public void setDiscountCustomer(Set<Discount> discountCustomer) {
-		this.discountCustomer = discountCustomer;
 	}
 
 	public Integer getCustomerID() {

@@ -27,12 +27,9 @@ public class Category {
 	@Column(name = "CATEGORY_NAME")
 	private String cateName;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "BOOK_DETAIL",
-				joinColumns = @JoinColumn(name = "CATEGORY_ID"),
-				inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
-	private Set<Book> categoryBook = new HashSet<>();
-
+	@ManyToMany(mappedBy = "bookCategory")
+	private Set<Book> categoryBook = new HashSet<Book>();
+	
 	public Category() {
 		super();
 	}

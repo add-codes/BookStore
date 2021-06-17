@@ -32,71 +32,56 @@ public class Book {
 
 	@Column(name = "EDITION")
 	private Integer edition;
+	
+	@Column(name = "PUBLISHER")
+	private String publisher;
 
 	@Column(name = "PUBLICATION_DATE")
 	private Date publicationDate;
 
 	@Column(name = "PRICE")
 	private double price;
-
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinTable(name = "BOOK_DETAIL",
-//				joinColumns = @JoinColumn(name = "BOOK_ID"),
-//				inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"),
-//				inverseJoinColumns = @JoinColumn(name = "PUBLISHER_ID"),
-//				inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
-	@JoinTable(name = "BOOK_DETAIL", 
-				joinColumns = @JoinColumn(name = "BOOK_ID"), 
+	@JoinTable(name = "AUTHOR_BOOK",
+				joinColumns = @JoinColumn(name = "BOOK_ID"),
 				inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
-	private Set<Author> authorBook = new HashSet<>();
-
+	private Set<Author> bookAuthor = new HashSet<Author>();
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "BOOK_DETAIL", 
-				joinColumns = @JoinColumn(name = "BOOK_ID"), 
-				inverseJoinColumns = @JoinColumn(name = "PUBLISHER_ID"))
-	private Set<Publisher> publisherBook = new HashSet<>();
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "BOOK_DETAIL", 
-				joinColumns = @JoinColumn(name = "BOOK_ID"), 
+	@JoinTable(name = "CATEGORY_BOOK",
+				joinColumns = @JoinColumn(name = "BOOK_ID"),
 				inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
-	private Set<Category> categoryBook = new HashSet<>();
+	private Set<Category> bookCategory = new HashSet<Category>();
 
 	public Book() {
 		super();
 	}
 
-	public Book(Integer bookID, String title, Integer edition, Date publicationDate, double price) {
+	public Book(Integer bookID, String title, Integer edition, String publisher, Date publicationDate, double price) {
 		super();
 		this.bookID = bookID;
 		this.title = title;
 		this.edition = edition;
+		this.publisher = publisher;
 		this.publicationDate = publicationDate;
 		this.price = price;
 	}
 
-	public Set<Author> getAuthorBook() {
-		return authorBook;
+	public Set<Author> getBookAuthor() {
+		return bookAuthor;
 	}
 
-	public void setAuthorBook(Set<Author> authorBook) {
-		this.authorBook = authorBook;
+	public void setBookAuthor(Set<Author> bookAuthor) {
+		this.bookAuthor = bookAuthor;
 	}
 
-	public Set<Publisher> getPublisherBook() {
-		return publisherBook;
+	public Set<Category> getBookCategory() {
+		return bookCategory;
 	}
 
-	public void setPublisherBook(Set<Publisher> publisherBook) {
-		this.publisherBook = publisherBook;
-	}
-
-	public Set<Category> getCategoryBook() {
-		return categoryBook;
-	}
-
-	public void setCategoryBook(Set<Category> categoryBook) {
-		this.categoryBook = categoryBook;
+	public void setBookCategory(Set<Category> bookCategory) {
+		this.bookCategory = bookCategory;
 	}
 
 	public Integer getBookID() {
@@ -121,6 +106,14 @@ public class Book {
 
 	public void setEdition(Integer edition) {
 		this.edition = edition;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public Date getPublicationDate() {

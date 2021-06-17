@@ -34,11 +34,8 @@ public class Discount {
 	@Column(name = "EXPIRED")
 	private Date expired;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "CUSTOMER_DISCOUNT",
-				joinColumns = @JoinColumn(name = "DISCOUNT_ID"),
-				inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID"))
-	private Set<Customer> customerDiscount = new HashSet<Customer>();
+	@ManyToMany(mappedBy = "customerDiscount")
+	private Set<Customer> discountCustomer = new HashSet<Customer>();
 
 	public Discount() {
 		super();
@@ -52,12 +49,12 @@ public class Discount {
 		this.expired = expired;
 	}
 
-	public Set<Customer> getCustomerDiscount() {
-		return customerDiscount;
+	public Set<Customer> getDiscountCustomer() {
+		return discountCustomer;
 	}
 
-	public void setCustomerDiscount(Set<Customer> customerDiscount) {
-		this.customerDiscount = customerDiscount;
+	public void setDiscountCustomer(Set<Customer> discountCustomer) {
+		this.discountCustomer = discountCustomer;
 	}
 
 	public Integer getDiscountID() {

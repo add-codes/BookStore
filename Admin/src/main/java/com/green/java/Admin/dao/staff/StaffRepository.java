@@ -1,4 +1,4 @@
-package com.green.java.Admin.dao;
+package com.green.java.Admin.dao.staff;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

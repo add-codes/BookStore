@@ -30,11 +30,8 @@ public class Role {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "STAFF_ROLE",
-				joinColumns = @JoinColumn(name = "ROLE_ID"),
-				inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
-	private Set<Staff> staffRole = new HashSet<>();
+	@ManyToMany(mappedBy = "staffRole")
+	private Set<Staff> roleStaff = new HashSet<>();
 	
 	public Role() {
 		super();
@@ -46,13 +43,13 @@ public class Role {
 		this.roleName = roleName;
 		this.description = description;
 	}
-	
-	public Set<Staff> getStaffRole() {
-		return staffRole;
+
+	public Set<Staff> getRoleStaff() {
+		return roleStaff;
 	}
 
-	public void setStaffRole(Set<Staff> staffRole) {
-		this.staffRole = staffRole;
+	public void setRoleStaff(Set<Staff> roleStaff) {
+		this.roleStaff = roleStaff;
 	}
 
 	public Integer getRoleID() {

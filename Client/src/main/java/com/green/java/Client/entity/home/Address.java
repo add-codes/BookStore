@@ -1,11 +1,18 @@
-package com.green.java.Client.entity;
+package com.green.java.Client.entity.home;
 
 import javax.persistence.Table;
+
+import com.green.java.Client.entity.customer.Customer;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "ADDRESS")
@@ -32,14 +39,17 @@ public class Address {
 	private String street;
 
 	@Column(name = "NUMBER")
-	private Integer number;
+	private String houseNumber;
+	
+	@ManyToMany(mappedBy = "customerAddress")
+	private Set<Customer> addressCustomer = new HashSet<Customer>(); 
 
 	public Address() {
 		super();
 	}
 
 	public Address(Integer addressID, String country, String city, String district, String ward, String street,
-			Integer number) {
+			String houseNumber) {
 		super();
 		this.addressID = addressID;
 		this.country = country;
@@ -47,7 +57,15 @@ public class Address {
 		this.district = district;
 		this.ward = ward;
 		this.street = street;
-		this.number = number;
+		this.houseNumber = houseNumber;
+	}
+
+	public Set<Customer> getAddressCustomer() {
+		return addressCustomer;
+	}
+
+	public void setAddressCustomer(Set<Customer> addressCustomer) {
+		this.addressCustomer = addressCustomer;
 	}
 
 	public Integer getAddressID() {
@@ -98,12 +116,12 @@ public class Address {
 		this.street = street;
 	}
 
-	public Integer getNumber() {
-		return number;
+	public String getHouseNumber() {
+		return houseNumber;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
 	}
 
 }

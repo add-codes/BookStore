@@ -1,13 +1,22 @@
-package com.green.java.Client.entity;
+package com.green.java.Client.entity.customer;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.green.java.Client.entity.home.Address;
 
 @Entity
 @Table(name = "CUSTOMER")
@@ -47,6 +56,12 @@ public class Customer {
 
 	@Column(name = "STATUS")
 	private Boolean customerStatus;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "ADDRESS_CUSTOMER",
+				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
+				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+	private Set<Address> customerAddress = new HashSet<Address>();
 
 	public Customer() {
 		super();
@@ -83,6 +98,14 @@ public class Customer {
 		this.customerRankMember = customerRankMember;
 		this.customerCreatedDate = customerCreatedDate;
 		this.customerStatus = customerStatus;
+	}
+
+	public Set<Address> getCustomerAddress() {
+		return customerAddress;
+	}
+
+	public void setCustomerAddress(Set<Address> customerAddress) {
+		this.customerAddress = customerAddress;
 	}
 
 	public Integer getCustomerID() {
@@ -172,7 +195,5 @@ public class Customer {
 	public void setCustomerStatus(Boolean customerStatus) {
 		this.customerStatus = customerStatus;
 	}
-	
-	
-	
+
 }

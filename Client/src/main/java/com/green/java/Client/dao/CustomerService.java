@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.green.java.Client.entity.Customer;
+import com.green.java.Client.entity.customer.Customer;
 
 @Service
 @Transactional
