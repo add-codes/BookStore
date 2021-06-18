@@ -17,29 +17,30 @@ public class CustomerDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Customer customer =  customerRepository.getCustomerByFirstName(username);
+		Customer customer =  customerRepository.getCustomerByEmail(username);
 		
 		System.out.println(" ---------- " + username + " ---------- ");
 		
 		if (customer == null) {
 			System.out.println("loadUserByUsername with not found first name");
-			throw new UsernameNotFoundException(Announcement.firstNameNotFound);
+			throw new UsernameNotFoundException(Announcement.usernameNotFound);
 		}
 		
 		return new CustomerDetails(customer);
+//		return null;
 	}
 	
-	public UserDetails loadCustomerByLastName(String lastName) throws UsernameNotFoundException {
-		Customer customer =  customerRepository.getCustomerByFirstName(lastName);
-		
-		System.out.println(" ---------- " + lastName + " ---------- ");
-		
-		if (customer == null) {
-			System.out.println("loadUserByUsername with not found last name");
-			throw new UsernameNotFoundException(Announcement.lastNameNotFound);
-		}
-		
-		return new CustomerDetails(customer);
-	}
+//	public UserDetails loadCustomerByEmail(String email) throws UsernameNotFoundException {
+//		Customer customer =  customerRepository.getCustomerByEmail(email);
+//		
+//		System.out.println(" ---------- " + email + " ---------- ");
+//		
+//		if (customer == null) {
+//			System.out.println("loadUserByUsername with not found last name");
+//			throw new UsernameNotFoundException(Announcement.emailNotFound);
+//		}
+//		
+//		return new CustomerDetails(customer);
+//	}
 	
 }

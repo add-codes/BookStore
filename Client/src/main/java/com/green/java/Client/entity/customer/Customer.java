@@ -62,6 +62,12 @@ public class Customer {
 				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
 				inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
 	private Set<Address> customerAddress = new HashSet<Address>();
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "CUSTOMER_DISCOUNT",
+				joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
+				inverseJoinColumns = @JoinColumn(name = "DISCOUNT_ID"))
+	private Set<Discount> customerDiscount = new HashSet<Discount>();
 
 	public Customer() {
 		super();
@@ -106,6 +112,14 @@ public class Customer {
 
 	public void setCustomerAddress(Set<Address> customerAddress) {
 		this.customerAddress = customerAddress;
+	}
+
+	public Set<Discount> getCustomerDiscount() {
+		return customerDiscount;
+	}
+
+	public void setCustomerDiscount(Set<Discount> customerDiscount) {
+		this.customerDiscount = customerDiscount;
 	}
 
 	public Integer getCustomerID() {

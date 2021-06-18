@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta name="viewport" content="width=device-ưidth, initial-scale=1.0">
         <title>
@@ -22,11 +22,11 @@
 
             <div class="formBx">
                 <div class="form signInForm">
-                    <form>
+                    <form method="post" th:action="@{dologin}">
                         <h3>Sign In</h3>
-                        <input type="text" placeholder="Username" name="txtUsername">
+                        <input type="text" placeholder="Email" name="txtEmail">
                         <input type="password" placeholder="Password" name="txtPassword">
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Login" th:formaction="@{dologin}" formmethod="post">
                         <a href="#" class="forgetPassword"> Forgotten Password</a>
                     </form>
                 </div>
@@ -35,7 +35,6 @@
                     <form>
                         <h3>Sign Up</h3>
                         <input type="text" placeholder="Email" name="txtEmail">
-                        <input type="text" placeholder="Username" name="txtUsername">   
                         <input type="password" placeholder="Password" name="txtPassword">
                         <input type="password" placeholder="Confirm Password" name="txtConfirmPassword">
                         <input type="submit" value="Register">
