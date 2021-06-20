@@ -38,8 +38,9 @@ public class StaffDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return staff.getStaffUsername();
+		return (staff.getStaffFirstName() + " " + staff.getStaffLastName());
 	}
+	
 
 	@Override
 	public boolean isAccountNonExpired() {
