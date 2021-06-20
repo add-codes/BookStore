@@ -19,11 +19,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.green.java.Client.handler.OnAuthenticationFailureHandler;
 import com.green.java.Client.handler.OnAuthenticationSuccessHandler;
+import com.green.java.Client.handler.OnLogoutSuccessHandler;
 import com.green.java.Client.service.CustomerDetailsService;
 
 @Configuration()
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private OnLogoutSuccessHandler logoutSuccessHandler;
 	
 	@Autowired
 	private OnAuthenticationFailureHandler authFailureHandler;
@@ -64,8 +68,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.usernameParameter("txtEmail")
 			.passwordParameter("txtPassword")
 			.loginProcessingUrl("/dologin")
-			.failureHandler(new OnAuthenticationFailureHandler())
-			.successHandler(new OnAuthenticationSuccessHandler())
+			.failureHandler(authFailureHandler)
+			.successHandler(authSuccessHandler)
+			.and().logout().permitAll()
+			.logoutSuccessHandler(logoutSuccessHandler)
 			.and().exceptionHandling().accessDeniedPage("/404");
 	}
 	
