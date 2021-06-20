@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,11 +17,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.green.java.Admin.handler.OnAuthenticationFailureHandler;
 import com.green.java.Admin.handler.OnAuthenticationSuccessHandler;
+import com.green.java.Admin.handler.OnLogoutSuccessHandler;
 import com.green.java.Admin.service.StaffDetailsService;
 
 @Configuration()
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private OnLogoutSuccessHandler logoutSuccessHandler;
+	
+	@Autowired
+	private OnAuthenticationSuccessHandler authSuccessHandler;
+	
+	@Autowired
+	private OnAuthenticationFailureHandler authFailureHandler;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -54,10 +65,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.usernameParameter("txtUsername")
 			.passwordParameter("txtPassword")
 			.loginProcessingUrl("/dologin")
-			.failureHandler(new OnAuthenticationFailureHandler())
-			.successHandler(new OnAuthenticationSuccessHandler())
+			.failureHandler(authFailureHandler)
+			.successHandler(authSuccessHandler)
 			.and().logout().permitAll()
-			.and().exceptionHandling().accessDeniedPage("/403"); 
+			.logoutSuccessHandler(logoutSuccessHandler) // After click logout button, staff is navigated to login page
+			.and().exceptionHandling().accessDeniedPage("/404"); 
 	}
 	
 }

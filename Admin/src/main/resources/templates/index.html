@@ -7,7 +7,7 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Dashio - Bootstrap Admin Template</title>
+<title>Dashio - Bootstrap Admin BookStore</title>
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
@@ -188,7 +188,13 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li sec:authorize="isAuthenticated()">
+						<!-- <a class="logout" th:href="@{/logout}">Logout</a> -->
+						<form th:action="@{/logout}" th:method="post" name="formLogout" hidden="true">
+							<input type="submit" value="Logout">
+						</form>
+						<a class="logout" onclick="document.formLogout.submit()" href="login">Logout</a>
+					</li>
 				</ul>
 			</div>
 		</header>
