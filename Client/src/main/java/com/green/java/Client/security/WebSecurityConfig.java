@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,6 +24,12 @@ import com.green.java.Client.service.CustomerDetailsService;
 @Configuration()
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private OnAuthenticationFailureHandler authFailureHandler;
+	
+	@Autowired
+	private OnAuthenticationSuccessHandler authSuccessHandler;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {

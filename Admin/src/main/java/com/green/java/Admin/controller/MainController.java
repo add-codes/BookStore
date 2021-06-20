@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.green.java.Admin.dao.staff.StaffService;
 import com.green.java.Admin.entity.staff.Staff;
+import com.green.java.Admin.service.StaffService;
 
 @Controller
 public class MainController {

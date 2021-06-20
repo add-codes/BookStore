@@ -19,7 +19,7 @@ public class CustomerDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Customer customer =  customerRepository.getCustomerByEmail(username);
 		
-		System.out.println(" ---------- " + username + " ---------- ");
+		System.out.println(" ---------- " + customer.getCustomerEmail() + " ---------- ");
 		
 		if (customer == null) {
 			System.out.println("loadUserByUsername with not found first name");
@@ -27,20 +27,6 @@ public class CustomerDetailsService implements UserDetailsService{
 		}
 		
 		return new CustomerDetails(customer);
-//		return null;
 	}
-	
-//	public UserDetails loadCustomerByEmail(String email) throws UsernameNotFoundException {
-//		Customer customer =  customerRepository.getCustomerByEmail(email);
-//		
-//		System.out.println(" ---------- " + email + " ---------- ");
-//		
-//		if (customer == null) {
-//			System.out.println("loadUserByUsername with not found last name");
-//			throw new UsernameNotFoundException(Announcement.emailNotFound);
-//		}
-//		
-//		return new CustomerDetails(customer);
-//	}
 	
 }
