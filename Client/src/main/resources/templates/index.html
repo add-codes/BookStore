@@ -55,6 +55,9 @@
 							<li><a href="contact.html">Contact Us</a></li>
 							<li sec:authorize="isAnonymous()"><a href="login.html">Login</a></li>
 							<li sec:authorize="isAuthenticated()">
+								<a href="/profile" sec:authentication="name"></a>
+							</li>
+							<li sec:authorize="isAuthenticated()">
 								<form th:action="@{/logout}" th:method="post" name="formLogout" hidden="true">
 									<input type="submit" value="Logout">
 								</form>
