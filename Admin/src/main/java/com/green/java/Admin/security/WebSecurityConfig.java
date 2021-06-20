@@ -69,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.successHandler(authSuccessHandler)
 			.and().logout().permitAll()
 			.logoutSuccessHandler(logoutSuccessHandler) // After click logout button, staff is navigated to login page
+			.and().rememberMe()	// Remember me check box
 			.and().exceptionHandling().accessDeniedPage("/404"); 
 	}
 	
